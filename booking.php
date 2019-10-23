@@ -41,13 +41,10 @@ if ( isset($_SESSION['basket']) && isset ($_SESSION['customer']) ){
 		<span style="font-size:23px; font-weight:400; color:black">Your tickets have been successfully booked! <br>Now you can collect them at the theatre showing your ticket ID.<br>THANK YOU!<br><br></span>
 		</div><?php
 		
-		$sql = "insert into customers (customerid, firstname, lastname, street, town, postcode, phonenumber, email) values(
+		$sql = "insert into customers (customerid, firstname, lastname, phonenumber, email) values(
 				'',	
 				'".$customer['Firstname']."',
 				'".$customer['Lastname']."',
-				'".$customer['Street']."',
-				'".$customer['Town']."',
-				'".$customer['Postcode']."',
 				'".$customer['Phonenumber']."',
 				'".$customer['Email']."')";
 		$q = $pdo->prepare($sql);

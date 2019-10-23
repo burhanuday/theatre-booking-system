@@ -31,24 +31,6 @@ if (!empty($_POST)) {
         $valid = false;
     }
 
-    if (empty($street)) {
-        $streetError = 'Please enter street';
-        $valid = false;
-    }
-
-    if (empty($town)) {
-        $townError = 'Please enter town';
-        $valid = false;
-    }
-
-    if (strlen($postcode) < 6) {
-        $postcodeError = "Input is too short, minimum is 6 characters.";
-        $valid = false;
-    } else if (strlen($postcode) > 7) {
-        $postcodeError = "Input is too long, maximum is 8 characters.";
-        $valid = false;
-    }
-
     if (strlen($phonenumber) < 11) {
         $phonenumberError = "Input is too short, minimum is 11 characters.";
         $valid = false;
@@ -70,9 +52,6 @@ if (!empty($_POST)) {
         $_SESSION['customer'] = array(
             'Firstname' => $firstname,
             'Lastname' => $lastname,
-            'Street' => $street,
-            'Town' => $town,
-            'Postcode' => $postcode,
             'Phonenumber' => $phonenumber,
             'Email' => $email
         );
@@ -103,30 +82,6 @@ if (!empty($_POST)) {
             <div class="controls">
                 <input name="lastname" type="text" placeholder="Last Name" value="<?php echo !empty($lastname) ? $lastname : ''; ?>">
                 <?php if (!empty($lastnameError)) : ?> <span class="help-inline"><?php echo $lastnameError; ?></span> <?php endif; ?>
-            </div>
-        </div>
-
-        <div class="control-group <?php echo !empty($streetError) ? 'error' : ''; ?>">
-            <label class="control-label">Street</label>
-            <div class="controls">
-                <input name="street" type="text" placeholder="Street" value="<?php echo !empty($street) ? $street : ''; ?>">
-                <?php if (!empty($streetError)) : ?> <span class="help-inline"><?php echo $streetError; ?></span> <?php endif; ?>
-            </div>
-        </div>
-
-        <div class="control-group <?php echo !empty($townError) ? 'error' : ''; ?>">
-            <label class="control-label">Town</label>
-            <div class="controls">
-                <input name="town" type="text" placeholder="Town" value="<?php echo !empty($town) ? $town : ''; ?>">
-                <?php if (!empty($townError)) : ?> <span class="help-inline"><?php echo $townError; ?></span> <?php endif; ?>
-            </div>
-        </div>
-
-        <div class="control-group <?php echo !empty($postcodeError) ? 'error' : ''; ?>">
-            <label class="control-label">Post Code</label>
-            <div class="controls">
-                <input name="postcode" type="text" placeholder="Post Code" value="<?php echo !empty($postcode) ? $postcode : ''; ?>">
-                <?php if (!empty($postcodeError)) : ?> <span class="help-inline"><?php echo $postcodeError; ?></span> <?php endif; ?>
             </div>
         </div>
 
