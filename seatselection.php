@@ -11,7 +11,7 @@ include("./includes/header.html");
 		<thead class="thead-dark">
 			<tr>
 				<th scope="col">Row</th>
-				<th>Column</th>
+				<th scope="col">Seats</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -77,6 +77,27 @@ include("./includes/header.html");
 			</tr>
 		</tbody>
 	</table>
+
+	<p>
+		<?php
+		$con = mysqli_connect("localhost", "root", "", "theater");
+		// Check connection
+		if (mysqli_connect_errno()) {
+			echo "Failed to connect to MySQL: " . mysqli_connect_error();
+		}
+
+		$sql = "SELECT * FROM booking";
+
+		$query = mysqli_query($con, "SELECT count(seatfk) as booked FROM booking WHERE performancefk=" . $_GET['performanceid']);
+
+		if (mysqli_num_rows($query)) {
+			foreach ($query as $result) {
+				$empty = 18 -  intval($result["booked"]);
+				echo "Number of empty seats: " . $empty;
+			}
+		}
+		?>
+	</p>
 </div>
 
 <div class="col-lg-5">
